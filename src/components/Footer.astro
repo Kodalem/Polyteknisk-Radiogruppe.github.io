@@ -1,0 +1,47 @@
+---
+const platform = "codeberg";
+const username = "kodalem";
+import Social from "./Social.astro";
+import CompanyBox from "./CompanyBox.astro";
+---
+
+<!-- <script src="https://kit.fontawesome.com/85880c5f29.js" crossorigin="anonymous"></script> -->
+<!-- Preload instead -->
+
+<footer>
+  <Social platform="facebook" domain="com" username="polytekniskRG" platform_name="Facebook" fa_lib="fa-brands" fa_name="fa-facebook"/>
+  <Social platform="instagram" domain="com" username="radiogruppedtu" platform_name="Instagram" fa_lib="fa-brands" fa_name="fa-instagram"/>
+</footer>
+
+<style>
+
+	footer {
+        position: sticky;
+        bottom: 0;
+        scale: 0.85;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        gap: 1rem;
+        border: 2px #060007;
+        border-radius: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        background-color: rgba(0, 0, 0, 0.56);
+	}
+
+
+
+	code {
+		font-family:
+			Menlo,
+			Monaco,
+			Lucida Console,
+			Liberation Mono,
+			DejaVu Sans Mono,
+			Bitstream Vera Sans Mono,
+			Courier New,
+			monospace;
+	}
+</style>

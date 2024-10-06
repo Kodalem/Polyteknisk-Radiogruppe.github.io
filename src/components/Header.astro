@@ -1,0 +1,99 @@
+---
+import Hamburger from './Hamburger.astro';
+import Navigation from './Navigation.astro';
+import ThemeIcon from './ThemeIcon.astro';
+---
+<!-- Font preloading -->
+<link rel="preload" href="../../public/fonts/AvenirNextFontFiles/AvenirNext-Medium.otf" as="font" type="font/otf" crossorigin>
+
+
+
+<header>
+  <nav>
+    <Hamburger />
+    <Navigation/>
+    <ThemeIcon />
+  </nav>
+</header>
+
+
+
+
+<script>
+  document.addEventListener('astro:page-load', ():void => {
+    // Hamburger menu toggle with animation
+    const handleToggleClick = () => {
+        const navLinks = document.querySelector(".nav-links")!;
+        navLinks.classList.toggle("open");
+    }
+      document.getElementById("hamburgerToggle")!.addEventListener("click", handleToggleClick);
+  });
+
+</script>
+
+<style>
+
+   html.dark{
+     div{
+
+     }
+
+     header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        border: 2px #060007;
+        border-radius: 10px;
+        background-color: rgba(57, 56, 56, 0.76);
+    }
+   }
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        background-color: rgba(0, 0, 0, 0.76);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+
+    }
+
+    nav {
+      position: sticky;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .nav-links {
+      position: sticky;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 600px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .nav-links.open {
+        transform: translateY(0);
+    }
+
+    .nav-links {
+        padding: 1rem;
+        text-decoration: none;
+    }
+    // Fade in animation of the navigation links
+    .nav-links {
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+
+</style>
+

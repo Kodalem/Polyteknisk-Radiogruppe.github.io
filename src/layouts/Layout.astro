@@ -1,0 +1,87 @@
+---
+
+interface Props {
+	title: string;
+}
+
+import { ViewTransitions } from "astro:transitions";
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+const { title } = Astro.props;
+import CompanyBox from '../components/CompanyBox.astro';
+
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="description" content="Polyteknisk Radio Gruppe (PRG)" />
+	<meta name="viewport" content="width=device-width" />
+	<link rel="icon" type="image/svg" href="/favicon.svg" />
+	<meta name="generator" content={Astro.generator} />
+	<title>{title}</title>
+	<ViewTransitions />
+</head>
+<body>
+<Header/>
+<slot />
+<CompanyBox/>
+<Footer/>
+<script>
+	import "../scripts/menu.js";
+</script>
+</body>
+</html>
+<style is:global>
+	:root.dark {
+		//--accent: 136, 58, 104;
+		--accent: 136, 58, 104;
+		--accent-light: 224, 204, 250;
+		--accent-dark: 49, 30, 101;
+		--accent-gradient: linear-gradient(
+			66deg,
+			rgb(var(--accent)),
+			rgb(var(--accent-light)) 20%,
+			#ffffff 60%
+		);
+	}
+	:root {
+		//--accent: 136, 58, 104;
+		--accent: 136, 58, 104;
+		--accent-light: 70, 0, 120;
+		--accent-dark: 49, 30, 101;
+		--accent-gradient: linear-gradient(
+			66deg,
+			rgb(var(--accent)),
+			rgb(var(--accent-light)) 20%,
+			#ffffff 60%
+		);
+	}
+
+	// Pad the
+
+</style>
+
+<script>
+
+	// import the required functions and icons
+	import { library, config, dom} from '@fortawesome/fontawesome-svg-core'
+	import { faMountain } from '@fortawesome/free-solid-svg-icons'
+	import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons'
+
+	// since we want astro to handle the css we should disable automatic css injection on the client
+	// this is similar to other ssr frameworks like next.js or nuxt
+	config.autoAddCss = false
+
+	// create a subset of icons that you are going to use so
+	// astro is able to tree shake and optimize the javascript bundle for best performance
+	library.add(
+		faFacebook,
+		faInstagram
+	);
+
+	// replace the unprocessed icons with the svg and watch for additional icons
+	dom.watch();
+</script>

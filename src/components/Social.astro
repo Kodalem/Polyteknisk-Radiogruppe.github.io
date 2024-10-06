@@ -1,0 +1,19 @@
+---
+const { platform, domain, username, platform_name, fa_lib, fa_name} = Astro.props;
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTwitter } from '@fortawesome/free-brands-svg-icons'
+
+---
+<a href={`https://www.${platform}.${domain}/${username}`}>{platform_name+' '}
+    <i class=`${fa_lib} ${fa_name}`></i>
+</a>
+
+<style>
+
+    a:link{
+        color: white;
+    }
+    a:visited{
+        color: #fff698;
+    }
+</style>

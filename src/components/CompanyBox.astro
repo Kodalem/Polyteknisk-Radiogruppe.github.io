@@ -1,0 +1,55 @@
+---
+import {fade} from 'astro:transitions';
+---
+<body>
+    <text_sponsor> Sponsored by </text_sponsor>
+    <company_logos transition:animate={fade({duration: '0.4s'})} class="company-logo">
+        <img src="/company_logos/Nordic_Semiconductor_Company_Logo.svg.png" alt="Company Logo" style="height:20%; width:20%" />
+        <img src="/company_logos/logoipsum-248.svg" alt="Company Logo" />
+        <img src="/company_logos/logoipsum-259.svg" alt="Company Logo" />
+        <img src="/company_logos/logoipsum-278.svg" alt="Company Logo" />
+        <img src="/company_logos/logoipsum-291.svg" alt="Company Logo" />
+        <img src="/company_logos/logoipsum-292.svg" alt="Company Logo" />
+        <img src="/company_logos/logoipsum-300.svg" alt="Company Logo" />
+        <img src="/company_logos/logoipsum-321.svg" alt="Company Logo" />
+        <img src="/company_logos/logoipsum-250.svg" alt="Company Logo" />
+        <img src="/company_logos/logoipsum-212.svg" alt="Company Logo" />
+        <img src="/company_logos/logoipsum-215.svg" alt="Company Logo" />
+    </company_logos>
+    </body>
+
+<style>
+    html.dark{
+        company_logos{
+            background-color: rgba(234, 225, 225, 0.72);
+        }
+    }
+    company_logos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 600px;
+        gap: 1rem;
+        flex-wrap: wrap;
+        padding: 1.25rem;
+        scale: 0.9;
+        border-radius: 10px;
+        background-color: rgba(0, 0, 0, 0.21);
+    }
+
+    text_sponsor {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.38rem;
+        padding-bottom: 0.78rem;
+    }
+
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+</style>
