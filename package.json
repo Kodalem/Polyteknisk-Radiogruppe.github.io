@@ -1,5 +1,5 @@
 {
-  "name": "prg-astro",
+  "name": "",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -11,22 +11,34 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/mdx": "4.0.0-beta.1",
     "@astrojs/preact": "^3.5.3",
     "@astrojs/react": "^3.6.2",
-    "@astrojs/vue": "^4.5.0",
     "@astrojs/rss": "^4.0.7",
+    "@astrojs/vue": "^5.0.0-beta.0",
     "@fortawesome/fontawesome-free": "^6.6.0",
-    "astro": "^4.14.3",
-    "preact": "^10.24.2",
-    "typescript": "^5.6.2",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
-    "@fortawesome/react-fontawesome": "^0.2.0"
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.0",
+    "astro": "^5.0.0-beta.3",
+    "beta": "^0.0.1",
+    "preact": "^10.24.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "rehype-katex": "^7.0.1",
+    "remark-github": "^12.0.0",
+    "remark-images": "^4.1.0",
+    "remark-mdx": "^3.0.1",
+    "typescript": "^5.6.2"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.15",
     "@types/three": "^0.166.0",
     "@types/uuid": "^9.0.8",
-    "drizzle-kit": "^0.22.7"
+    "drizzle-kit": "^0.22.7",
+    "remark-code-import": "^1.2.0"
   }
 }

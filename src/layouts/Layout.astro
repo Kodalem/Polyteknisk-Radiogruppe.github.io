@@ -4,7 +4,7 @@ interface Props {
 	title: string;
 }
 
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -22,11 +22,12 @@ import CompanyBox from '../components/CompanyBox.astro';
 	<link rel="icon" type="image/svg" href="/favicon.svg" />
 	<meta name="generator" content={Astro.generator} />
 	<title>{title}</title>
-	<ViewTransitions />
+	<ClientRouter />
 </head>
 <body>
 <Header/>
 <slot />
+<hr>
 <CompanyBox/>
 <Footer/>
 <script>
@@ -35,8 +36,21 @@ import CompanyBox from '../components/CompanyBox.astro';
 </body>
 </html>
 <style is:global>
+	html.dark{
+		hr {
+			background-color: rgba(177, 179, 188, 0.9);
+		}
+	}
+	hr {
+		border: 0;
+		clear:both;
+		display:block;
+		width: 100%;
+		background-color: rgba(0, 11, 46, 0.9);
+		height: 3px;
+	}
+
 	:root.dark {
-		//--accent: 136, 58, 104;
 		--accent: 136, 58, 104;
 		--accent-light: 224, 204, 250;
 		--accent-dark: 49, 30, 101;
@@ -48,7 +62,6 @@ import CompanyBox from '../components/CompanyBox.astro';
 		);
 	}
 	:root {
-		//--accent: 136, 58, 104;
 		--accent: 136, 58, 104;
 		--accent-light: 70, 0, 120;
 		--accent-dark: 49, 30, 101;

@@ -1,4 +1,11 @@
 
+@font-face {
+	font-family: "Maple Mono Font";
+	src: url('../../public/fonts/MapleMonoFontFiles/MapleMono-Regular.otf') format('opentype');
+	font-weight: normal;
+	font-style: normal;
+	font_display: swap;
+}
 
 	html {
 		font-family: "Maple Mono Font", monospace, system-ui, sans-serif;
@@ -9,20 +16,14 @@
 
 	}
 
-.box {
-	margin-top: 1em;
-	padding: 1em;
-	font-family: "Avenir Next Medium", sans-serif;
-	border: 1px solid #ccc;
-	border-radius: 0.5em;
-	background-color: #f9f9f9;
-	box-shadow: 0 0 0 0.1em #ccc;
-}
 
 .svg-inline--fa {
 	width: 1.33em;
 	height: 1.33em;
 }
+
+/*Make it so that shiki uses maple mono*/
+
 
 	a.link{
 		color: #fb01ac;
@@ -33,6 +34,17 @@
 
 	a:visited {
 		color: rgba(198, 2, 158, 0.84);
+	}
+	html.dark .astro-code,
+	html.dark .astro-code span {
+		color: var(--shiki-dark) !important;
+		background-color: var(--shiki-dark-bg) !important;
+		/* Optional, if you also want font styles */
+		/* Use Maple mono*/
+		font-family: "Maple Mono Font", monospace, system-ui, sans-serif;
+		font-style: var(--shiki-dark-font-style) !important;
+		font-weight: var(--shiki-dark-font-weight) !important;
+		text-decoration: var(--shiki-dark-text-decoration) !important;
 	}
 
 	html.dark {
@@ -51,37 +63,7 @@
 			color: #e49ae8;
 		}
 
-		.title-box {
-			padding: 0.0em;
-			margin: 0;
-			height: 20%;
-			border: 4px solid #bc86da;
-			border-radius: 3em;
-			background-color: #251721;
-			box-shadow: 0 0 0 0.1em #ea638c;
-		}
 
-		.desc {
-			margin-left: 0em;
-		padding-left: 1em;
-			margin-top: 1em;
-			border: 2px solid rgba(109, 41, 189, 0.96);
-			border-radius: 0.75em;
-			background-color: #251721;
-			box-shadow: 0 0 0.1em 0.2em #ea638c;
-		margin-bottom: 1em;
-
-		}
-
-		.box {
-			font-family: "Avenir Next Medium", sans-serif;
-			margin-top: 1em;
-			padding: 1em;
-			border: 1px solid #ccc;
-			border-radius: 0.5em;
-			background-color: #251721;
-			box-shadow: 0 0 0 0.1em #ccc;
-		}
 		@media (max-width: 642px) {
       #hamburgerToggle {
 		  border: 2px #bcc9d3;
@@ -107,7 +89,6 @@
 			background: rgba(50, 35, 71, 0.98);
 			border: 2px solid #161d22;
 			border-radius: 0.6em;
-			font-family: "Poppins Medium Italic Font", sans-serif;
 			font-size: 2.1rem;
 		}
 		.nav-links.open {
@@ -126,7 +107,6 @@
 			background: rgba(50, 35, 71, 0.98);
 			border: 2px solid #161d22;
 			border-radius: 0.6em;
-			font-family: "Poppins Medium Italic Font", sans-serif;
 			font-size: 2.1rem;
 		}
 	}
@@ -134,7 +114,6 @@
 	}
 
 	h2 {
-		font-family: "Poppins Medium Italic Font", sans-serif;
 		font-size: 2.1rem;
 	}
 
@@ -154,8 +133,8 @@
 	main {
 		margin: auto;
 		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
+		width: 1000px;
+		max-width: calc(100% - 1rem);
 		color: white;
 		font-size: 20px;
 		line-height: 1.6;
@@ -165,7 +144,7 @@
 		top: -32px;
 		left: 50%;
 		transform: translatex(-50%);
-		width: 220px;
+		width: 320px;
 		height: auto;
 		z-index: -1;
 	}
@@ -181,7 +160,6 @@
 		-webkit-font-smoothing: antialiased !important;
 	}
 	slot {
-		font-family: "Avenir Next Medium", sans-serif;
 		font-size: 1.2rem;
 	}
 	.text-gradient {
@@ -218,8 +196,8 @@
 
 body {
   margin: 0 auto;
-  width: 100%;
-  max-width: 80ch;
+  width: 110%;
+  max-width: 85ch;
   padding: 1rem;
   line-height: 1.5;
 }
@@ -241,7 +219,6 @@ h1 {
   font-size: 1.8rem;
   font-weight: bold;
   text-transform: uppercase;
-	font-family: "Poppins Medium Italic Font", serif;
 
 }
 
@@ -272,7 +249,6 @@ h1 {
 			background: rgba(150, 111, 220, 0.98);
 			border: 2px solid #bcc9d3;
 			border-radius: 0.6em;
-			font-family: "Poppins Medium Italic Font", sans-serif;
 			font-size: 2.1rem;
 		}
 
@@ -292,7 +268,10 @@ h1 {
 			background: rgba(150, 111, 220, 0.98);
 			border: 2px solid #bcc9d3;
 			border-radius: 0.6em;
-			font-family: "Poppins Medium Italic Font", sans-serif;
 			font-size: 2.1rem;
 		}
 	}
+
+code{
+	font-family: "Maple Mono Font", monospace, system-ui, sans-serif;
+}

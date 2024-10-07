@@ -1,0 +1,192 @@
+---
+import Layout from "./Layout.astro";
+const {frontmatter} = Astro.props;
+import '../styles/global.css';
+import { fade, slide } from "astro:transitions";
+import { getCollection } from "astro:content";
+---
+<Layout title={frontmatter.title}>
+    <!-- Add some padding between the title and the nav bar -->
+    <div style="padding-top: 1em;"></div>
+
+
+    <!-- Dark mode title box, check if dark mode and pick either -->
+    <div class="title-box" transition:animate={slide({ duration: '0.3334s' })}>
+        <h1>{frontmatter.title}</h1>
+    </div>
+    <p class="date-view" transition:animate={slide({ duration: '0.3334s' })}>
+        {frontmatter.pubDate.toString().slice(0, 10)}
+        <!-- Views component to show the view count -->
+        <!-- <Views slug={frontmatter.title}/> -->
+    </p>
+
+    <div class="tags" transition:animate={slide({ duration: '0.45s' })}>
+        <h3>Tags:</h3>
+        <h4 class="tag_boxes">{frontmatter.tags.map((tag: any) => (
+                <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
+        ))}</h4>
+
+
+        </div>
+
+    <div class="team_lead" transition:animate={slide({ duration: '0.6667s' })}>
+        <h3>{frontmatter.team_lead.map((individual: any) => (
+                <p class="individual">Team Lead:  <a href={`/people/${individual}`}>{individual}</a></p>
+        ))}</h3>
+    </div>
+
+    <div class="desc" transition:animate={slide({ duration: '0.6667s' })} >
+        <h2><em>{frontmatter.description}</em></h2>
+    </div>
+    <div class="box" transition:animate={slide({ duration: '1s' })}>
+        <slot />
+    </div>
+</Layout>
+
+<style>
+    html.dark{
+        .title-box {
+            border: 4px solid #bc86da;
+            background-color: #251721;
+            box-shadow: 0 0 0 0.1em #ea638c;
+        }
+        .date-view{
+            color: rgba(246, 243, 130, 0.67);
+        }
+
+        .desc {
+            border: 2px solid rgba(109, 41, 189, 0.96);
+            background-color: #251721;
+            box-shadow: 0 0 0.1em 0.2em #ea638c;
+        }
+        .tag_boxes {
+            a:link {
+                color: #cf003f;
+            }
+            a:visited {
+                color: #ea638c;
+            }
+        }
+
+        .team_lead{
+            a:link {
+                color: #cf003f;
+            }
+            a:visited {
+                color: #ea638c;
+            }
+        }
+
+        .box {
+            border: 1px solid #ccc;
+            background-color: #251721;
+            box-shadow: 0 0 0 0.1em #ccc;
+        }
+
+    }
+
+    .title-box {
+        /*Position this onto the left*/
+        display: grid;
+        text-align: start;
+        justify-content: start;
+        margin-left: 0;
+        margin-right: auto;
+        padding-left: 1em;
+        padding-right: 1em;
+        height: 15%;
+        border: 4px solid #0950ff;
+        border-radius: 1.25em;
+        background-color: rgba(255, 255, 255, 0.51);
+        box-shadow: 0 0 0 0.3em rgba(65, 0, 128, 0.42);
+    }
+    .date-view {
+        margin-left: 0;
+        margin-right: auto;
+        padding: 2px;
+        font-size: 1.2em;
+        color: rgba(74, 7, 7, 0.78);
+    }
+    .tags {
+        display: flex;
+        justify-content: space-evenly;
+        gap: 1.2em;
+        margin-top: -1em;
+        margin-left: 0;
+        margin-right: auto;
+    }
+    .tag_boxes {
+        display: flex;
+        justify-content: space-evenly;
+        gap: 1.2em;
+        margin-bottom: -1em;
+        /* Push it up */
+        margin-top: 0.2em;
+        a:link {
+            color: #d83a00;
+        }
+        a:visited {
+            color: #783500;
+        }
+    }
+    .tag{
+        border: 1px solid #a1a1a1;
+        /* Bring bottom box line up */
+        border-radius: 0.5em;
+        padding: 0.5em 1em;
+
+        a:link {
+            color: #9a6a00;
+        }
+        a:visited {
+            color: #8c371a;
+        }
+    }
+    .team_lead{
+        margin-left: 0;
+        margin-right: auto;
+        a:link {
+            color: #9a6a00;
+        }
+        a:visited {
+            color: #8c371a;
+        }
+    }
+    .desc{
+        margin-left: 0em;
+        padding-left: 1.5em;
+        margin-top: 1em;
+        border: 2px solid rgba(69, 0, 147, 0.96);
+        border-radius: 0.75em;
+        background-color: rgba(253, 220, 246, 0.32);
+        box-shadow: 0 0 0.1em 0.2em #efe529;
+        margin-bottom: 1em;
+    }
+
+
+    .box {
+        /* Put maximum width on the box */
+        max-width: 100%;
+        margin-top: 1em;
+        padding: 1em;
+        font-family: "Maple Mono Font", monospace;
+        border: 1px solid #ccc;
+        border-radius: 0.5em;
+        background-color: #f9f9f9;
+        box-shadow: 0 0 0 0.1em #ccc;
+    }
+
+
+
+
+
+    html.dark .astro-code,
+    html.dark .astro-code span {
+        color: var(--shiki-dark) !important;
+        background-color: var(--shiki-dark-bg) !important;
+        /* Optional, if you also want font styles */
+        font-style: var(--shiki-dark-font-style) !important;
+        font-weight: var(--shiki-dark-font-weight) !important;
+        text-decoration: var(--shiki-dark-text-decoration) !important;
+    }
+</style>

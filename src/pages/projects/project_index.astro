@@ -1,0 +1,75 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import BlogPost from '../../components/BlogPost.astro'
+import { fade, slide } from "astro:transitions";
+
+const allPosts  = Object.values(import.meta.glob('./project_list_dir/*.mdx', { eager: true }));
+const tags = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())];
+const pageTitle = "My Blog";
+export const prerender = true;
+
+// Print allPosts to console
+console.log(allPosts);
+
+---
+<Layout title={pageTitle}>
+    <div class="tags">
+    {tags.map((tag) => (
+      <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
+    ))}
+  </div>
+
+  <p>Here are my blog posts:</p>
+    <div class="box">
+        <ul>
+            <!-- List all projects -->
+            {allPosts.map((post) => <BlogPost url={post.url} title={post.frontmatter.title} />)}
+
+        </ul>
+    </div>
+
+    <!--Add a square box area with a different color to help focus text in-->
+
+</Layout>
+
+<style>
+  a {
+    color: #bcc9d3;
+  }
+
+  p{
+    font-size: 1.44em;
+  }
+
+  ul {
+      font-family: "Maple Mono Font", monospace, system-ui, sans-serif;
+    font-size: 1.44em;
+  }
+
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .box{
+    background-color: #f0f0f0;
+    padding: 1em;
+    border-radius: 1em;
+  }
+
+  .tag {
+    margin: 0.35em;
+    border: dotted 1px #a1a1a1;
+    border-radius: .5em;
+      padding: .5em 2em .5em 1em;
+      font-size: 1em;
+    color: #fff;
+    background-color: #46188c;
+    list-style: none;
+    display: flex;
+    background-position: 100%;
+    transition: background-position 0.6s cubic-bezier(0.26, 1, 0.36, 1);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+
+  }
+</style>
