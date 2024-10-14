@@ -1,40 +1,19 @@
 ---
-
+const { projectId } = Astro.props;
 ---
-<form class="mt-8" method="post">
+
+<form method="post">
+    <input type="hidden" name="project_id" value={projectId} />
     <div class="mb-4">
-        <label for="author" class="label">
-            Name
-        </label>
-        <input
-                type="text"
-                id="author"
-                name="author"
-                class="input"
-                placeholder="Your name"
-        />
+        <label for="author" class="label">Name</label>
+        <input type="text" id="author" name="author" class="input" placeholder="Your name" required />
     </div>
-
-    <div class="mb-6">
-        <label for="content" class="label">
-            Comment
-        </label>
-        <textarea
-                id="content"
-                name="content"
-                class="textarea"
-                rows="4"
-                placeholder="Your comment"
-        ></textarea>
+    <div class="mb-4">
+        <label for="content" class="label">Comment</label>
+        <textarea id="content" name="content" class="input" placeholder="Your comment" required></textarea>
     </div>
-
     <div class="flex items-center justify-between">
-        <button
-                type="submit"
-                class="button"
-        >
-            Submit
-        </button>
+        <button type="submit" class="button">Submit</button>
     </div>
 </form>
 

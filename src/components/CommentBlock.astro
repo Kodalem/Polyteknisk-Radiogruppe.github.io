@@ -1,29 +1,59 @@
 ---
 import Comments from '../components/Comment.astro';
 import { db } from "./utils/db";
+import { eq } from 'drizzle-orm';
 import Comment from "../components/Comment.astro";
 import CommentForm from "../components/CommentForm.astro";
-import { usersTable } from "./models/schema";
+import { commentsTable, projectPageTable } from "./models/schema";
 
+import { slide } from "astro:transitions"
+
+// Receive the slug prop
+const { slug } = Astro.props;
+
+console.log("Slug:", slug);
+
+// Retrieve the project ID based on the slug (title)
+const project = await db.query.projectPageTable.findFirst({
+    where: eq(projectPageTable.title, slug as string)
+});
+const projectId = project?.project_id?.toString() || null;
+
+// Handle POST request to add a new comment
 if (Astro.request.method === 'POST') {
-    const data = await Astro.request.formData();
-    const author = data.get('author');
-    const content = data.get('content');
-    await db.insert(usersTable).values({
-        name: author as string,
-        content: content as string
-    });
+    try {
+        const data = await Astro.request.formData();
+        const author = data.get('author')?.toString() || null;
+        const content = data.get('content')?.toString() || null;
+
+        console.log("Data to be inserted:", { projectId, author, content });
+
+        if (projectId && author && content) {
+            await db.insert(commentsTable).values({
+                name: author,
+                content: content,
+                project_id: projectId
+            });
+        } else {
+            console.error("Invalid data: ", { projectId, author, content });
+        }
+    } catch (error) {
+        console.error("Error inserting comment: ", error);
+    }
 }
 
-const cms = await db.query.usersTable.findMany();
+// Retrieve comments for the current project
+const comments = await db.query.commentsTable.findMany({
+    where: eq(commentsTable.project_id, projectId || "")
+});
 ---
 
-<div class="my-8 mx-auto max-w-2xl px-4">
-    <h1 class="text-2xl font-bold text-gray-900 mb-6">Comments</h1>
-    <ul class="list-none space-y-4">
-        {cms.map((comment:any) => <Comment comment={comment} />)}
+<div class="my-8 mx-auto max-w-2xl px-4"  transition:animate={slide({ duration: '0.6667s' })}>
+    <h1 class="text-2xl font-bold text-gray-900 mb-6"  transition:animate={slide({ duration: '0.6667s' })}>Comments</h1>
+    <ul class="list-none space-y-4"  transition:animate={slide({ duration: '0.6667s' })}>
+        {comments.map((comment:any) => <Comment comment={comment} />)}
     </ul>
-    <CommentForm />
+    <CommentForm projectId={projectId} />
 </div>
 
 <style>

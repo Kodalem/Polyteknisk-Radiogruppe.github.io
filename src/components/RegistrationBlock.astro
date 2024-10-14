@@ -11,6 +11,8 @@ if (Astro.request.method === 'POST') {
     const university_email = data.get('university_email');
     const personal_email = data.get('personal_email');
     const phone_number = data.get('phone_number');
+    const gender = data.get('gender');
+    const pronouns = data.get('pronouns');
     // Assume that when the user initially registers, they are not paid member yet
     const is_paid = 0;
     await db.insert(membersTable).values({
@@ -19,6 +21,8 @@ if (Astro.request.method === 'POST') {
         university_email: university_email as string,
         personal_email: personal_email as string,
         phone: phone_number as string,
+        gender: gender as string,
+        pronouns: pronouns as string,
         paid_membership: is_paid as number
     });
 }
@@ -50,9 +54,19 @@ const cms = await db.query.membersTable.findMany();
                 <input type="email" id="personal_email" name="personal_email" class="input" placeholder="Your personal email" />
             </div>
 
-            <div class="mb-6">
+            <div class="mb-4">
                 <label for="phone_number" class="label">Phone Number</label>
                 <input type="text" id="phone_number" name="phone_number" class="input" placeholder="Your phone number" />
+            </div>
+
+            <div class="mb-4">
+                <label for="gender" class="label">Gender</label>
+                <input type="text" id="gender" name="gender" class="input" placeholder="Your gender" />
+            </div>
+
+            <div class="mb-6">
+                <label for="pronouns" class="label">Pronouns</label>
+                <input type="text" id="pronouns" name="pronouns" class="input" placeholder="Your pronouns" />
             </div>
 
             <div class="flex items-center justify-between">
@@ -71,12 +85,12 @@ const cms = await db.query.membersTable.findMany();
         margin-top: 2em;
     }
 
-    .mb-6 {
-        margin-bottom: 1.5em;
+    .mb-4 {
+        margin-bottom: 1em;
     }
 
-    .mb-8 {
-        margin-bottom: 2em;
+    .mb-6 {
+        margin-bottom: 1.5em;
     }
 
     .label {

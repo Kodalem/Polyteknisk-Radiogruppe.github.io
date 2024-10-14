@@ -1,14 +1,44 @@
 ---
 import Layout from "./Layout.astro";
-const {frontmatter} = Astro.props;
+import CommentBlock from '../../src/components/CommentBlock.astro';
+
+const { frontmatter } = Astro.props;
 import '../styles/global.css';
 import { fade, slide } from "astro:transitions";
 import { getCollection } from "astro:content";
+
+import { db } from "../components/utils/db";
+import { eq } from 'drizzle-orm';
+import { projectPageTable } from "../components/models/schema";
+import { v4 as uuidv4 } from 'uuid';
+
+// Check if the project page already exists
+const existingProject = await db.query.projectPageTable.findFirst({
+    where: eq(projectPageTable.title, frontmatter.title)
+});
+
+if (!existingProject) {
+    // Generate a new UUID for the project
+    const projectId = uuidv4();
+
+    // Insert the new project page
+    await db.insert(projectPageTable).values({
+        project_id: projectId,
+        title: frontmatter.title,
+        pub_date: frontmatter.pubDate.toString(),
+        description: frontmatter.description,
+        team_lead: frontmatter.team_lead.join(', ')
+    });
+
+    console.log("Inserted new project page with ID:", projectId);
+} else {
+    console.log("Project page already exists with ID:", existingProject.project_id);
+}
 ---
+
 <Layout title={frontmatter.title}>
     <!-- Add some padding between the title and the nav bar -->
     <div style="padding-top: 1em;"></div>
-
 
     <!-- Dark mode title box, check if dark mode and pick either -->
     <div class="title-box" transition:animate={slide({ duration: '0.3334s' })}>
@@ -16,8 +46,6 @@ import { getCollection } from "astro:content";
     </div>
     <p class="date-view" transition:animate={slide({ duration: '0.3334s' })}>
         {frontmatter.pubDate.toString().slice(0, 10)}
-        <!-- Views component to show the view count -->
-        <!-- <Views slug={frontmatter.title}/> -->
     </p>
 
     <div class="tags" transition:animate={slide({ duration: '0.45s' })}>
@@ -25,9 +53,7 @@ import { getCollection } from "astro:content";
         <h4 class="tag_boxes">{frontmatter.tags.map((tag: any) => (
                 <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
         ))}</h4>
-
-
-        </div>
+    </div>
 
     <div class="team_lead" transition:animate={slide({ duration: '0.6667s' })}>
         <h3>{frontmatter.team_lead.map((individual: any) => (
@@ -41,6 +67,8 @@ import { getCollection } from "astro:content";
     <div class="box" transition:animate={slide({ duration: '1s' })}>
         <slot />
     </div>
+
+    <CommentBlock slug={frontmatter.title} />
 </Layout>
 
 <style>
