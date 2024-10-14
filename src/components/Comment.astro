@@ -1,0 +1,74 @@
+---
+import { type Comment } from './models/types';
+interface Props {
+    comment: Comment;
+}
+const { comment } = Astro.props;
+---
+
+<li class="mb-4">
+    <blockquote class="p-4 bg-gray-100 rounded border-l-4 border-gray-300">
+        <p class="text-gray-800">{comment.content}</p>
+        <footer class="mt-2">
+            — <cite class="font-medium">{comment.name}</cite>
+        </footer>
+    </blockquote>
+</li>
+
+<style>
+    li {
+        margin-bottom: 0.75em;
+    }
+
+    blockquote {
+        padding: 0.5em;
+        background-color: #f9f9f9;
+        border-left: 3px solid #ccc;
+        border-radius: 0.25em;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        position: relative;
+        animation: slideIn 0.5s ease-out;
+    }
+
+    blockquote::before {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: -3px;
+        width: 6px;
+        height: 6px;
+        background-color: #f9f9f9;
+        border-radius: 50%;
+        box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+        font-size: 0.875em;
+        line-height: 1.4;
+        color: #333;
+    }
+
+    cite {
+        font-weight: bold;
+        color: #555;
+    }
+
+    /* Dark mode styles */
+    html.dark blockquote {
+        background-color: #333;
+        border-left: 3px solid #555;
+        color: #ddd;
+    }
+
+    html.dark blockquote::before {
+        background-color: #333;
+    }
+
+    html.dark p {
+        color: #ddd;
+    }
+
+    html.dark cite {
+        color: #aaa;
+    }
+</style>

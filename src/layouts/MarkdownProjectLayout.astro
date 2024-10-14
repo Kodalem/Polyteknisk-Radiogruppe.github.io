@@ -31,7 +31,7 @@ import { getCollection } from "astro:content";
 
     <div class="team_lead" transition:animate={slide({ duration: '0.6667s' })}>
         <h3>{frontmatter.team_lead.map((individual: any) => (
-                <p class="individual">Team Lead:  <a href={`/people/${individual}`}>{individual}</a></p>
+                <p class="individual">Team Lead:  <a href={`/people/${individual.replace(/\s+/g, '-')}`}>{individual}</a></p>
         ))}</h3>
     </div>
 

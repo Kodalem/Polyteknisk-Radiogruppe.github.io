@@ -14,8 +14,9 @@ export async function getStaticPaths():Promise<any> {
 
     return uniqueLeaderPeople.map((individual: any) => {
         const filteredPosts:MarkdownInstance<any>[] = allPosts.filter((post:MarkdownInstance<any>) => post.frontmatter.team_lead.includes(individual));
+        // Remove the spaces in the individual name
         return {
-            params: { individual },
+            params: { individual: individual.replace(/\s+/g, '-') },
             props: { posts: filteredPosts },
         };
     });
@@ -23,6 +24,9 @@ export async function getStaticPaths():Promise<any> {
 
 const { individual } = Astro.params;
 const { posts } = Astro.props;
+
+// Print the generated url for the person
+console.log(`The generated url for ${individual} is: /people/${individual}`);
 ---
 <Layout title={individual}>
     <p>Posts tagged with {individual}</p>

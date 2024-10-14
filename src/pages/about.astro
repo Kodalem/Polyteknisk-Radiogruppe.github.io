@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { fade, slide } from "astro:transitions";
+import { getCollection } from "astro:content";
+---
+<!-- place holder text for the about page -->
+<Layout title="About">
+    <div class="about" transition:animate={slide({ duration: '0.4s' })}>
+        <h1>About Us</h1>
+        <p>Placeholder text for the about page. This is where we will put information about the lab, the team, and the projects we are working on.</p>
+        <h2>Our Mission</h2>
+        <p>Placeholder text for the mission statement. This is where we will put information about the lab, the team, and the projects we are working on.</p>
+        <h2>Our Team</h2>
+        <p>Placeholder text for the team. This is where we will put information about the lab, the team, and the projects we are working on.</p>
+        <p>Maybe display the whole members board for the about, who is who in what position.</p>
+        <p>Yes, this places a placeholder cat. Which gets randomly given on every refresh</p>
+        <!-- Insert image from https://cataas.com/cat -->
+        <img src="https://cataas.com/cat" alt="A cat" />
+        <h3>Our History</h3>
+        <p>Placeholder text for the history. This is where we will put information about the lab, the team, and the projects we are working on.</p>
+    </div>
+</Layout>
+
+<style>
+    .about {
+        padding: 1em;
+    }
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        max-width: 300px;
+    }
+</style>

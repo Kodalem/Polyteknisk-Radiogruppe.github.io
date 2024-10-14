@@ -2,14 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 
-import Greeting from '../components/Greeting';
 import '../styles/global.css';
 import { fade } from "astro:transitions";
 
 // Disable prerendering for this page
 export const prerender = false;
 // <h2 transition:animate={fade({ duration: '250ms' })}> {CookieDataExample.counter}</h2>
-
 ---
 
 <Layout title="Polyteknisk Radio Gruppe (PRG)">
@@ -193,8 +191,12 @@ export const prerender = false;
 				title="GitHub Repository"
 				body="GitHub Repository for this website"
 			/>
+			<Card
+				href="tools/live_markdown_editor"
+				title="Live Markdown Editor"
+				body="Basic editor, for creating event pages here!"
+			/>
 		</ul>
-
 
 	</main>
 	<dummy-text>

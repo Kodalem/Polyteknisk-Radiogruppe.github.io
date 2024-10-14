@@ -9,7 +9,11 @@ import remarkMdx from "remark-mdx";
 import remarkImages from "remark-images";
 import codeImport from 'remark-code-import';
 
-import react from '@astrojs/react';
+import vue from '@astrojs/vue';
+
+
+import node from '@astrojs/node';
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,7 +21,8 @@ export default defineConfig({
       {
         remarkPlugins: [rehypeKatex, remarkMdx, remarkImages, codeImport],
       }
-  ), react()],
+  ), vue({jsx: true, devtools: {launchEditor: "webstorm"}}),],
+
   markdown: {
     shikiConfig: {
       themes:{
@@ -26,4 +31,8 @@ export default defineConfig({
       },
     },
   },
+  output: 'server',
+  adapter: node({
+    mode: 'standalone',
+  }),
 });

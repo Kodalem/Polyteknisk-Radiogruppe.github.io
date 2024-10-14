@@ -8,6 +8,7 @@ tags: ["software", "server", "webdev"]
 assigned_people: ["Christine Elisabeth Koppel"]
 ---
 
+
 # Web overhaul
 
 ## Priority: Prerequisites
@@ -19,13 +20,15 @@ assigned_people: ["Christine Elisabeth Koppel"]
 ## Priority: High
 
 - [ ] Finalize the main page
-- [ ] Create a membership page
-- [ ] Create event page
+- [x] Create a membership page
+- [x] Create project page
 - [ ] Mobile friendly design
+- [ ] Create a dockerfile for the project
+- [ ] Think through the SQL database structure - ***IN PROGRESS***
 
 ## Priority: Medium
 
-- [ ] Create a project builder
+- [ ] Create a project builder - ***IN PROGRESS***
 - [ ] Finalize the look and color and shape of the website
 
 ## Priority: Low
@@ -36,4 +39,9 @@ assigned_people: ["Christine Elisabeth Koppel"]
 ### Project page builder
 
 ```astro file=<rootDir>/src/layouts/MarkdownProjectLayout.astro
+```
+
+### SQL Database Structure
+
+```ts file=<rootDir>/src/components/models/schema.ts
 ```

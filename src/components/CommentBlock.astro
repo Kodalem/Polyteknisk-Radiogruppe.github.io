@@ -1,0 +1,30 @@
+---
+import Comments from '../components/Comment.astro';
+import { db } from "./utils/db";
+import Comment from "../components/Comment.astro";
+import CommentForm from "../components/CommentForm.astro";
+import { usersTable } from "./models/schema";
+
+if (Astro.request.method === 'POST') {
+    const data = await Astro.request.formData();
+    const author = data.get('author');
+    const content = data.get('content');
+    await db.insert(usersTable).values({
+        name: author as string,
+        content: content as string
+    });
+}
+
+const cms = await db.query.usersTable.findMany();
+---
+
+<div class="my-8 mx-auto max-w-2xl px-4">
+    <h1 class="text-2xl font-bold text-gray-900 mb-6">Comments</h1>
+    <ul class="list-none space-y-4">
+        {cms.map((comment:any) => <Comment comment={comment} />)}
+    </ul>
+    <CommentForm />
+</div>
+
+<style>
+</style>

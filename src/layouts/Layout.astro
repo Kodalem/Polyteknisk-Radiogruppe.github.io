@@ -86,7 +86,7 @@ import CompanyBox from '../components/CompanyBox.astro';
 
 	// since we want astro to handle the css we should disable automatic css injection on the client
 	// this is similar to other ssr frameworks like next.js or nuxt
-	config.autoAddCss = false
+	config.autoAddCss = true
 
 	// create a subset of icons that you are going to use so
 	// astro is able to tree shake and optimize the javascript bundle for best performance
@@ -95,6 +95,12 @@ import CompanyBox from '../components/CompanyBox.astro';
 		faInstagram
 	);
 
-	// replace the unprocessed icons with the svg and watch for additional icons
-	dom.watch();
+
+	// Disable the fontawesome icons on the live markdown editor page
+	if (window.location.pathname === '/tools/live_markdown_editor') {
+		// dom.watch();
+	}
+	else{
+		dom.watch();
+	}
 </script>

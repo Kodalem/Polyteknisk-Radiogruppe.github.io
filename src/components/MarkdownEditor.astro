@@ -1,0 +1,33 @@
+---
+import { defineComponent } from 'vue'
+import MdEditor from '../components/vue_playground/md_editor_v3.vue';
+---
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<div>
+    <h1>Markdown Editor</h1>
+    <p>Use the markdown editor below to write your markdown text.</p>
+    <h4>Please refresh the page to either reload the editor or icons if they do not show up!</h4>
+    <div class="app_box" id="app">
+        <MdEditor client:only="vue" />
+    </div>
+</div>
+
+<script>
+
+</script>
+
+<style>
+    .app_box {
+        max-width: 1300px;
+        margin: 0 auto;
+        width: 1200px;
+        font-family: BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+
+    /* Dark mode styles */
+    .dark .app_box {
+        background-color: #333;
+        color: #fff;
+    }
+</style>
