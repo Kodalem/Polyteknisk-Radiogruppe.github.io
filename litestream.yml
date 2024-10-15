@@ -1,5 +1,7 @@
 dbs:
-  - path: local.db
+  - path: data/local.db
     replicas:
-      - url: gs://01928d2c-cefc-7aaa-8fc3-8b89bc3cbb8c
+      - type: gcs
+        bucket: 01928d2c-cefc-7aaa-8fc3-8b89bc3cbb8c
+        path: local.db
 

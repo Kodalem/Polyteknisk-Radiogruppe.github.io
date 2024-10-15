@@ -1,3 +1,29 @@
+# Christine's Notes!
+
+## Pre-requisites
+
+***You must get the .json key file from the Google Cloud Platform to be able to run the project.***
+
+Follow the instructions in the [Litestream Documentation](https://litestream.io/guides/gcs/). The key file should be in the own
+created ./private/this_must_be_moved folder. And make sure that Dockerfile has the correct path to the key file.
+
+## Building
+
+```zsh
+docker build -t tiny-stack-2 .
+```
+
+## Running 
+
+```zsh
+docker run \
+  -p 4321:4321 \
+  -v $(pwd)/data:/data \
+  tiny-stack-2
+```
+
+
+
 # Astro Starter Kit: Basics
 
 ```sh
